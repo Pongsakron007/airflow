@@ -2,3 +2,6 @@ logs/*
 !logs/.gitkeep
 shared/*
 !shared/.gitkeep
+webserver_config.py
+airflow.cfg
+airflow-webserver.pid
