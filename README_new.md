@@ -21,5 +21,5 @@ first time username is "admin" and "password" adrees in log after we run contain
 ## Manual trigger in your dags
 after login to your Airflow web ui you can manual trigger your dags and see the result. You can see data in your database container name service "prosgres" you can go to exac mode in docker desktop then type "psql -U airflow -d gold_db" then type "SELECT * FROM 'table';" before you query you can review all table by this command "\dt" then you can query about table you interest.
 
-## Test add
-test something
+## Comming soon
+We will add another feather in future
