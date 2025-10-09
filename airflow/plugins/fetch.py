@@ -18,3 +18,7 @@ def fetch():
         json.dump({"price": price}, f)
 
     return full_path  # ✅ ส่ง path แทนข้อมูล
+
+
+response = requests.get("https://api.chnwt.dev/thai-gold-api/latest")
+print(response)
