@@ -18,4 +18,8 @@ __pycache__/
 *.env
 # Ignore system files
 .DS_Store
+<<<<<<< HEAD
 Thumbs.db
+=======
+Thumbs.db
+>>>>>>> 59b383d (change .gitignore and add .template.env)
