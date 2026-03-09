@@ -1,25 +1,71 @@
-# airflow
-Airflow project for more comprehension.
+# โปรเจกต์ Airflow สำหรับการทำความเข้าใจ
 
-## First step
-After clone this repository follow this step below.
+โปรเจกต์นี้จัดทำขึ้นเพื่อสาธิตและทำความเข้าใจการทำงานของ Apache Airflow ในการจัดการเวิร์กโฟลว์ ETL สำหรับข้อมูลราคาทองคำ
 
-## For the very first time you run the project use this command.
-docker-compose up --build
-docker-compose up -d --build
+## การเริ่มต้น (First Time Setup)
 
-## If you want to stop 
-docker-compose stop (if you run with docker-compose up -d command)
-ctrl +c and then docker-compose stop (if you run with docker-compose up command)
+หากคุณเพิ่งโคลน Repository นี้เป็นครั้งแรก ให้ทำตามขั้นตอนด้านล่างเพื่อเริ่มการทำงานของโปรเจกต์:
 
-## If you want to delete 
-docker-compose down
+1.  **สร้างและรัน Docker Containers ทั้งหมด**: ใช้คำสั่งนี้เพื่อสร้างอิมเมจและรันคอนเทนเนอร์ทั้งหมดในโหมด `detached` (ทำงานในพื้นหลัง) พร้อมสร้างภาพใหม่หากมีการเปลี่ยนแปลง
+    ```bash
+    docker-compose up -d --build
+    ```
+    _หากต้องการรันใน foreground เพื่อดู log โดยตรง สามารถใช้ `docker-compose up --build` ได้_
 
-## How to get username and password 
-first time username is "admin" and "password" adrees in log after we run container for the first time(Pls note that password will apear only first time when you start container otherwise you must delete container and volumn then get start again)
+## การจัดการ Airflow Project
 
-## Manual trigger in your dags
-after login to your Airflow web ui you can manual trigger your dags and see the result. You can see data in your database container name service "prosgres" you can go to exac mode in docker desktop then type "psql -U airflow -d gold_db" then type "SELECT * FROM 'table';" before you query you can review all table by this command "\dt" then you can query about table you interest.
+### การหยุดการทำงาน (Stopping Containers)
 
-## Test add
-test something
+หากคุณต้องการหยุดการทำงานของ Docker Containers:
+
+*   **สำหรับคอนเทนเนอร์ที่รันในโหมด `detached` (-d)**:
+    ```bash
+    docker-compose stop
+    ```
+*   **สำหรับคอนเทนเนอร์ที่รันในโหมด `foreground`**: กด `Ctrl + C` ใน Terminal ที่กำลังรันอยู่ จากนั้นใช้คำสั่ง `docker-compose stop`
+
+### การลบ (Deleting Containers และ Volumes)
+
+หากคุณต้องการลบ Docker Containers, Network และ Volumes ที่เกี่ยวข้องกับโปรเจกต์ (เช่น เมื่อต้องการเริ่มใหม่ทั้งหมด):
+
+```bash
+docker-compose down -v
+```
+_คำสั่ง `-v` จะลบ Docker Volumes ซึ่งจะทำให้ข้อมูลในฐานข้อมูลถูกลบไปด้วย โปรดใช้ด้วยความระมัดระวัง_
+
+## การเข้าสู่ระบบ Airflow Web UI
+
+เมื่อ Airflow Containers ทำงานอยู่ คุณสามารถเข้าถึง Airflow Web UI ได้ที่ `http://localhost:8080` (หรือพอร์ตที่คุณตั้งค่าไว้)
+
+*   **ชื่อผู้ใช้ (Username)**: `admin`
+*   **รหัสผ่าน (Password)**: รหัสผ่านจะปรากฏใน **Log** ของคอนเทนเนอร์ `airflow-webserver` เมื่อคุณรันคอนเทนเนอร์เป็นครั้งแรกเท่านั้น
+    *   หากคุณไม่เห็นรหัสผ่าน คุณอาจต้องลบคอนเทนเนอร์และ Volume ทั้งหมด (`docker-compose down -v`) และรันใหม่เพื่อดูรหัสผ่านอีกครั้ง
+
+## การเรียกใช้ DAGs ด้วยตนเอง
+
+หลังจากเข้าสู่ระบบ Airflow Web UI ได้แล้ว คุณสามารถไปที่หน้า `DAGs` เพื่อดู `gold_price_dag.py` และเรียกใช้งาน (Manual Trigger) DAG ได้ด้วยตนเอง จากนั้นตรวจสอบสถานะการทำงานและผลลัพธ์
+
+## การตรวจสอบข้อมูลในฐานข้อมูล (PostgreSQL)
+
+ข้อมูลที่ถูกประมวลผลโดย DAG จะถูกจัดเก็บไว้ในฐานข้อมูล PostgreSQL คุณสามารถเข้าถึงฐานข้อมูลเพื่อตรวจสอบข้อมูลได้ดังนี้:
+
+1.  **เปิด Docker Desktop (หรือ Terminal)**: ไปที่ส่วน `Containers` และหา Service ที่ชื่อว่า `postgres` (หรือชื่อที่คุณตั้งค่าไว้สำหรับฐานข้อมูล).
+2.  **เข้าสู่โหมด `exec`**: คลิกที่ไอคอน `CLI` (Command Line Interface) สำหรับคอนเทนเนอร์ `postgres` หรือใช้คำสั่งใน Terminal:
+    ```bash
+    docker exec -it <ชื่อคอนเทนเนอร์_postgres> psql -U airflow -d gold_db
+    ```
+    _คุณสามารถหา `ชื่อคอนเทนเนอร์_postgres` ได้จาก `docker ps`_
+3.  **คำสั่งตรวจสอบฐานข้อมูล**: เมื่อเข้าสู่ `psql` แล้ว คุณสามารถใช้คำสั่งต่อไปนี้:
+    *   **ดูตารางทั้งหมด**: 
+        ```sql
+        \dt
+        ```
+    *   **คิวรี่ข้อมูลจากตาราง (ตัวอย่าง)**:
+        ```sql
+        SELECT * FROM gold_prices;
+        ```
+        _แทนที่ `gold_prices` ด้วยชื่อตารางที่คุณสนใจ_
+
+## การพัฒนาเพิ่มเติม
+
+*   **Test add**: ส่วนนี้สามารถใช้สำหรับการทดสอบหรือเพิ่มข้อมูลเพื่อการพัฒนาเพิ่มเติมได้
