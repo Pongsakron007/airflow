@@ -1,21 +1,25 @@
 FROM apache/airflow:2.7.2
 
-# ใช้ user root ชั่วคราวเพื่อติดตั้ง package เพิ่มเติม (ถ้าจำเป็น)
+# Set standard Python environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 USER root
 
-# ติดตั้ง lib เสริม (optional)
-RUN apt-get update && apt-get install -y \
+# Install system dependencies and clean up thoroughly in one layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     build-essential \
     libpq-dev \
-    && apt-get clean
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# กลับไปใช้ user airflow
 USER airflow
 
-# ติดตั้ง Python package ที่จำเป็น (ถ้ามีไฟล์ requirements.txt)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy requirements and install Python packages
+COPY --chown=airflow:root requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
 
-# (optional) ถ้าคุณมีไฟล์หรือ folder ที่อยาก copy มาใช้ใน container
-# COPY ./shared /opt/airflow/shared ไม่จำเป็นแล้วเพราะว่ามีการ mount ผ่านทาง docker-compose.yml แล้ว
+# (Optional) Healthcheck to ensure the scheduler/webserver is alive
+HEALTHCHECK --interval=30s --timeout=30s --retries=3 \
+  CMD curl --fail http://localhost:8080/health || exit 1
