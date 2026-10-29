@@ -19,3 +19,8 @@ __pycache__/
 # Ignore system files
 .DS_Store
 Thumbs.db
+.vscode/
+
+# Understand-Anything temporary files
+.ua/tmp/
+.ua/.trash-*/

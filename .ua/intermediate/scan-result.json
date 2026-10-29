@@ -1,0 +1,111 @@
+{
+  "scriptCompleted": true,
+  "contentDigest": "ff226f0fc680ad2d3d4d17edb17872f0561cd6f9c26f09382fe6876a56843363",
+  "files": [
+    {
+      "path": ".template_env",
+      "language": "unknown",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "DockerFile",
+      "language": "unknown",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 125,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README_new.md",
+      "language": "markdown",
+      "sizeLines": 118,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "airflow/dags/gold_price_dag.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "airflow/plugins/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "airflow/plugins/fetch.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "airflow/plugins/load.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "airflow/scripts/init_db.sql",
+      "language": "sql",
+      "sizeLines": 6,
+      "fileCategory": "data"
+    },
+    {
+      "path": "chat_log.md",
+      "language": "markdown",
+      "sizeLines": 656,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 47,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "sizeLines": 2,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "utils/check_api.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 14,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "small",
+  "failures": [],
+  "stats": {
+    "filesScanned": 14,
+    "byCategory": {
+      "code": 7,
+      "docs": 5,
+      "data": 1,
+      "infra": 1
+    },
+    "byLanguage": {
+      "unknown": 2,
+      "markdown": 4,
+      "python": 5,
+      "sql": 1,
+      "yaml": 1,
+      "txt": 1
+    }
+  }
+}

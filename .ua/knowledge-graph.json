@@ -1,0 +1,423 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "gold_price_etl",
+    "languages": [
+      "python",
+      "sql",
+      "yaml",
+      "markdown"
+    ],
+    "frameworks": [
+      "apache-airflow",
+      "docker"
+    ],
+    "description": "Airflow ETL pipeline สำหรับดึง แปลง และจัดเก็บข้อมูลราคาทองคำลงใน PostgreSQL",
+    "analyzedAt": "2026-10-29T16:15:00Z",
+    "gitCommitHash": "20fbb2dba10c92042d8da702c78f8d9962f432a2"
+  },
+  "nodes": [
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "ไฟล์กำหนดกฎระเบียบและแนวทางการพัฒนาสำหรับ Agent ในโปรเจกต์ Gold Price ETL",
+      "tags": [
+        "documentation",
+        "rules",
+        "guidelines"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "เอกสารแนะนำโปรเจกต์ อธิบายสถาปัตยกรรม Airflow ETL ราคาทองคำ และคู่มือการรัน Docker",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "overview"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README_new.md",
+      "type": "document",
+      "name": "README_new.md",
+      "filePath": "README_new.md",
+      "summary": "เอกสารคู่มือโปรเจกต์ฉบับปรับปรุง อธิบายขั้นตอนการทำงานและคำสั่ง Docker Compose",
+      "tags": [
+        "documentation",
+        "guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:chat_log.md",
+      "type": "document",
+      "name": "chat_log.md",
+      "filePath": "chat_log.md",
+      "summary": "บันทึกประวัติการสนทนาและขั้นตอนการพัฒนาโปรเจกต์ในอดีต",
+      "tags": [
+        "documentation",
+        "history",
+        "logs"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "service:docker-compose.yml",
+      "type": "service",
+      "name": "docker-compose.yml",
+      "filePath": "docker-compose.yml",
+      "summary": "คอนฟิก Docker Compose สำหรับรัน Airflow Webserver, Scheduler, Worker และ PostgreSQL",
+      "tags": [
+        "orchestration",
+        "infrastructure",
+        "docker-compose"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:requirements.txt",
+      "type": "config",
+      "name": "requirements.txt",
+      "filePath": "requirements.txt",
+      "summary": "รายการ Python dependencies เพิ่มเติมสำหรับ Airflow เช่น requests และ psycopg2-binary",
+      "tags": [
+        "configuration",
+        "dependencies",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.template_env",
+      "type": "config",
+      "name": ".template_env",
+      "filePath": ".template_env",
+      "summary": "ไฟล์เทมเพลตสำหรับตั้งค่า Environment Variables เช่น ข้อมูลเชื่อมต่อ Database และ Airflow UID",
+      "tags": [
+        "configuration",
+        "environment",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:DockerFile",
+      "type": "service",
+      "name": "DockerFile",
+      "filePath": "DockerFile",
+      "summary": "Dockerfile สำหรับสร้าง Custom Airflow Image พร้อมติดตั้ง dependencies",
+      "tags": [
+        "containerization",
+        "infrastructure",
+        "docker"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:airflow/dags/gold_price_dag.py",
+      "type": "file",
+      "name": "gold_price_dag.py",
+      "filePath": "airflow/dags/gold_price_dag.py",
+      "summary": "Airflow DAG สำหรับจัดลำดับการทำงานของ ETL ราคาทองคำ รัน fetch และ load ตามกำหนดเวลา",
+      "tags": [
+        "data-pipeline",
+        "airflow",
+        "dag",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:airflow/plugins/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "airflow/plugins/__init__.py",
+      "summary": "Package initialization file สำหรับ Airflow plugins",
+      "tags": [
+        "barrel",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:airflow/plugins/fetch.py",
+      "type": "file",
+      "name": "fetch.py",
+      "filePath": "airflow/plugins/fetch.py",
+      "summary": "โมดูลสำหรับยิง API ดึงข้อมูลราคาทองคำล่าสุด แล้วบันทึกลงไฟล์ JSON ใน shared volume",
+      "tags": [
+        "etl",
+        "extract",
+        "api-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:airflow/plugins/fetch.py:fetch",
+      "type": "function",
+      "name": "fetch",
+      "filePath": "airflow/plugins/fetch.py",
+      "lineRange": [
+        6,
+        20
+      ],
+      "summary": "ดึงข้อมูลราคาทองคำจาก REST API และเซฟเป็นไฟล์ JSON ตาม Timestamp",
+      "tags": [
+        "extract",
+        "http-request",
+        "json"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:airflow/plugins/load.py",
+      "type": "file",
+      "name": "load.py",
+      "filePath": "airflow/plugins/load.py",
+      "summary": "โมดูลสำหรับอ่านไฟล์ JSON ราคาทองคำ แปลงข้อมูล และบันทึกลงฐานข้อมูล PostgreSQL",
+      "tags": [
+        "etl",
+        "load",
+        "database"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:airflow/plugins/load.py:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "airflow/plugins/load.py",
+      "lineRange": [
+        4,
+        24
+      ],
+      "summary": "อ่านข้อมูล JSON จาก XCom, เชื่อมต่อ PostgreSQL และ INSERT ราคาทองคำลงตาราง gold_price",
+      "tags": [
+        "load",
+        "postgres",
+        "sql-insert"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:airflow/scripts/init_db.sql:gold_price",
+      "type": "table",
+      "name": "gold_price",
+      "filePath": "airflow/scripts/init_db.sql",
+      "summary": "ตารางฐานข้อมูลสำหรับจัดเก็บประวัติราคาทองคำ (id, price, fetched_at)",
+      "tags": [
+        "database",
+        "schema",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/check_api.py",
+      "type": "file",
+      "name": "check_api.py",
+      "filePath": "utils/check_api.py",
+      "summary": "สคริปต์ทดสอบยิง API ราคาทองคำเพื่อตรวจสอบการตอบสนองและโครงสร้าง JSON เบื้องต้น",
+      "tags": [
+        "utility",
+        "testing",
+        "api"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:README.md",
+      "target": "service:docker-compose.yml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "service:docker-compose.yml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:requirements.txt",
+      "target": "service:docker-compose.yml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:airflow/plugins/fetch.py",
+      "target": "function:airflow/plugins/fetch.py:fetch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:airflow/plugins/load.py",
+      "target": "function:airflow/plugins/load.py:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "file": "airflow/dags/gold_price_dag.py",
+      "source": "file:airflow/dags/gold_price_dag.py",
+      "target": "function:airflow/plugins/fetch.py:fetch",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:airflow/dags/gold_price_dag.py",
+      "target": "function:airflow/plugins/load.py:load",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "function:airflow/plugins/load.py:load",
+      "target": "table:airflow/scripts/init_db.sql:gold_price",
+      "type": "writes_to",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "service:DockerFile",
+      "target": "config:requirements.txt",
+      "type": "reads_from",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "service:docker-compose.yml",
+      "target": "service:DockerFile",
+      "type": "deploys",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "service:docker-compose.yml",
+      "target": "table:airflow/scripts/init_db.sql:gold_price",
+      "type": "provisions",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:orchestration-and-infra",
+      "name": "โครงสร้างพื้นฐานและการรันระบบ (Infrastructure & Orchestration)",
+      "description": "การจัดการ Container, Docker Compose, Dockerfile และค่าคอนฟิกสภาพแวดล้อม",
+      "nodeIds": [
+        "service:docker-compose.yml",
+        "service:DockerFile",
+        "config:.template_env",
+        "config:requirements.txt"
+      ]
+    },
+    {
+      "id": "layer:data-pipeline",
+      "name": "ไปป์ไลน์การประมวลผลข้อมูล (Data Pipeline & Plugins)",
+      "description": "เวิร์กโฟลว์ Apache Airflow และโมดูล Plugins สำหรับดึง (Fetch) และโหลด (Load) ข้อมูล",
+      "nodeIds": [
+        "file:airflow/dags/gold_price_dag.py",
+        "file:airflow/plugins/__init__.py",
+        "file:airflow/plugins/fetch.py",
+        "file:airflow/plugins/load.py"
+      ]
+    },
+    {
+      "id": "layer:storage-and-schema",
+      "name": "การจัดเก็บข้อมูลและสกีมา (Storage & Schema)",
+      "description": "ตารางและสคริปต์กำหนดสกีมาของฐานข้อมูล PostgreSQL",
+      "nodeIds": [
+        "table:airflow/scripts/init_db.sql:gold_price"
+      ]
+    },
+    {
+      "id": "layer:utilities-and-testing",
+      "name": "เครื่องมือช่วยเหลือและการทดสอบ (Utilities & Testing)",
+      "description": "สคริปต์ยูทิลิตี้สำหรับทดสอบและตรวจสอบการทำงานของ API",
+      "nodeIds": [
+        "file:utils/check_api.py"
+      ]
+    },
+    {
+      "id": "layer:documentation-and-rules",
+      "name": "เอกสารและกฎการพัฒนา (Documentation & Guidelines)",
+      "description": "คู่มือโปรเจกต์ กฎการพัฒนาสำหรับ Agent และประวัติการทำงาน",
+      "nodeIds": [
+        "document:AGENTS.md",
+        "document:README.md",
+        "document:README_new.md",
+        "document:chat_log.md"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "ภาพรวมโปรเจกต์และสถาปัตยกรรม",
+      "description": "เริ่มต้นทำความเข้าใจสถาปัตยกรรม ETL ราคาทองคำ และข้อกำหนดการทำงานจาก README และ AGENTS.md",
+      "nodeIds": [
+        "document:README.md",
+        "document:AGENTS.md"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "โครงสร้างพื้นฐานและการรันระบบด้วย Docker",
+      "description": "ดูคอนฟิก Docker Compose และ Dockerfile ที่ใช้เตรียม Environment สำหรับ Airflow และ PostgreSQL",
+      "nodeIds": [
+        "service:docker-compose.yml",
+        "service:DockerFile",
+        "config:.template_env"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Pipeline การทำงานหลัก (Airflow DAG)",
+      "description": "จุดเริ่มต้นของการรัน Workflow ดึงและโหลดข้อมูลราคาทองคำใน gold_price_dag.py",
+      "nodeIds": [
+        "file:airflow/dags/gold_price_dag.py"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "การดึงข้อมูลราคาทองคำ (Extract Step)",
+      "description": "ฟังก์ชัน fetch ใน fetch.py ทำหน้าที่ยิง API ราคาทองคำและเซฟข้อมูลเป็น JSON",
+      "nodeIds": [
+        "file:airflow/plugins/fetch.py",
+        "function:airflow/plugins/fetch.py:fetch"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "การบันทึกข้อมูลลงฐานข้อมูล (Load Step & Database)",
+      "description": "ฟังก์ชัน load ใน load.py นำข้อมูลจาก XCom ไปบันทึกลงตาราง gold_price ใน PostgreSQL",
+      "nodeIds": [
+        "file:airflow/plugins/load.py",
+        "function:airflow/plugins/load.py:load",
+        "table:airflow/scripts/init_db.sql:gold_price"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "เครื่องมือทดสอบ API",
+      "description": "สคริปต์ check_api.py ใช้สำหรับตรวจสอบความพร้อมของ API ภายนอกก่อนรันใน Airflow",
+      "nodeIds": [
+        "file:utils/check_api.py"
+      ]
+    }
+  ]
+}

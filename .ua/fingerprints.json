@@ -1,0 +1,249 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "20fbb2dba10c92042d8da702c78f8d9962f432a2",
+  "generatedAt": "2026-10-29T16:07:30.477Z",
+  "files": {
+    ".template_env": {
+      "filePath": ".template_env",
+      "contentHash": "25b58e4ade74b475c28951b7c065174ed87ad0d272a69848182d41094e306d2f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": false
+    },
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "0e1e8b8ed577409f92e6b13de2a7a2d849cee6d145e79d65260f6354f398b603",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": false
+    },
+    "DockerFile": {
+      "filePath": "DockerFile",
+      "contentHash": "5bba6c452480d91df3a2f4bada81b41c4bb8ab06b77ab159bb7a28572ee8b4a7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": false
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "5857fd49d5d23421420069a56df99af165300f7d7396b14e1833e8e8087b955c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 126,
+      "hasStructuralAnalysis": false
+    },
+    "README_new.md": {
+      "filePath": "README_new.md",
+      "contentHash": "8555e642f3b9281c44cbf0eb35f9d5081e05a892f9e3f94895fcba3e0da18e97",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 119,
+      "hasStructuralAnalysis": false
+    },
+    "airflow/dags/gold_price_dag.py": {
+      "filePath": "airflow/dags/gold_price_dag.py",
+      "contentHash": "0d25fbac86c41cdfcadd06c71b12c4246fb7e2c9e691a52e08d16e642765da97",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "airflow",
+          "specifiers": [
+            "DAG"
+          ]
+        },
+        {
+          "source": "airflow.operators.python",
+          "specifiers": [
+            "PythonOperator"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "plugins.fetch",
+          "specifiers": [
+            "fetch"
+          ]
+        },
+        {
+          "source": "plugins.load",
+          "specifiers": [
+            "load"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "airflow/plugins/__init__.py": {
+      "filePath": "airflow/plugins/__init__.py",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "airflow/plugins/fetch.py": {
+      "filePath": "airflow/plugins/fetch.py",
+      "contentHash": "3fce7b376c036a9792892b89863dcfb07a605d44696fe441306e4ff8bf3b768e",
+      "functions": [
+        {
+          "name": "fetch",
+          "params": [],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "requests",
+          "specifiers": [
+            "requests"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        }
+      ],
+      "exports": [
+        "fetch"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "airflow/plugins/load.py": {
+      "filePath": "airflow/plugins/load.py",
+      "contentHash": "6d57a9ff8d84589ac79c959c32dc9b85683e3b697b9159d82c62b559ac13c464",
+      "functions": [
+        {
+          "name": "load",
+          "params": [
+            "**context"
+          ],
+          "exported": true,
+          "lineCount": 21
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "psycopg2",
+          "specifiers": [
+            "psycopg2"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        }
+      ],
+      "exports": [
+        "load"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "airflow/scripts/init_db.sql": {
+      "filePath": "airflow/scripts/init_db.sql",
+      "contentHash": "4001470d93580477396ffa6200e11ff276492025848aedbdf6b5d98a40eb2dba",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": false
+    },
+    "chat_log.md": {
+      "filePath": "chat_log.md",
+      "contentHash": "09ae815b187cdff34b6bab8f9a620e7c8d44826fb09a0c1f5def7ed73d56f1a1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 657,
+      "hasStructuralAnalysis": false
+    },
+    "docker-compose.yml": {
+      "filePath": "docker-compose.yml",
+      "contentHash": "b88f29f0606b6d9ebace4e7e01b19de148d3997efff516b863c98768bb799c9e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": false
+    },
+    "requirements.txt": {
+      "filePath": "requirements.txt",
+      "contentHash": "2b7d2e9f46bedd013633d426ab88c6cb4ba81d66e18c1c4afe66ca800eeec450",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": false
+    },
+    "utils/check_api.py": {
+      "filePath": "utils/check_api.py",
+      "contentHash": "c082290b3babf5237113a8b5cfad7527adf1b176878fa5986f2dc25f7379891c",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "requests",
+          "specifiers": [
+            "requests"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    }
+  }
+}
