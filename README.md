@@ -35,7 +35,7 @@ graph LR
 หากต้องการเปิดดูแผนผังความสัมพันธ์ (Interactive Architecture Canvas) พร้อม Code Preview บนเว็บเบราว์เซอร์ของคุณเอง สามารถรันคำสั่งนี้ในรูทของโปรเจกต์ได้ทันที (ใช้ Node.js โดยไม่ต้องติดตั้งเครื่องมืออื่นเพิ่มเติม):
 
 ```bash
-npx understand-anything-viewer .
+npx https://github.com/Egonex-AI/Understand-Anything/releases/latest/download/understand-anything-viewer.tgz .
 ```
 
 *หรือหากต้องการระบุพอร์ต:*
